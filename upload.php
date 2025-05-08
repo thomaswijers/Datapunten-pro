@@ -30,14 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'course_index' => $courseIndex,
                 'retake' => $retake,
                 'filename' => $filename,
-                'timestamp' => date("Y-M-D")
+                'timestamp' => time()
             ];
 
             file_put_contents($dataFile, json_encode($allData, JSON_PRETTY_PRINT));
         }
     }
     // Redirect back to dashboard regardless of success/failure (can improve later)
-    header("Location: dashboard.php");
+    header("Location: datapunten.php");
     exit();
 }
 ?>

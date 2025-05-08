@@ -3,7 +3,7 @@ session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    header("Location: dashboard.php");
+    header("Location: datapunten.php");
     exit();
 }
 
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         password_verify($input_pass, $stored_pass)
     ) {
         $_SESSION['logged_in'] = true;
-        header("Location: dashboard.php");
+        header("Location: datapunten.php");
         exit();
     } else {
         $error = "Invalid username or password.";
