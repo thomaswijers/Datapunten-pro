@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <aside class="dashboard-sidebar">
     <div class="side-menu">
         <a href="datapunten.php">Datapunten</a>
