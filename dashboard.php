@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 // Load courses
 $courses = [];
 $courseFile = "data/courses.json";
-$pageTitle = "Home";
+$pageTitle = "Dashboard";
 
 include 'components/Header.inc.php';
 
