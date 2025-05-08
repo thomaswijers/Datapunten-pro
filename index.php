@@ -1,6 +1,7 @@
 <?php
 $dataFile = "data/data.json";
 $uploads = [];
+$pageTitle = "Home";
 
 if (file_exists($dataFile)) {
     $json = file_get_contents($dataFile);
@@ -18,29 +19,9 @@ if (file_exists($dataFile)) {
         $grouped[$course][] = $upload;
     }
 }
+
+include 'components/Header.inc.php'
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Course Uploads</title>
-    <style>
-        .course-section {
-            border: 1px solid #ccc;
-            padding: 1em;
-            margin-bottom: 1.5em;
-        }
-
-        .retake {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
     <h1>All Course Uploads</h1>
 
     <?php foreach ($grouped as $course => $files): ?>
