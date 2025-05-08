@@ -1,0 +1,36 @@
+{
+	"userdata": {
+		"username": "admin",
+		"password": "$2y$10$fgzIeM7x2hVvKnZPssfQnuGOx0v.hjzoKx6hqPxdtLdkGjeAwWUJi"
+	},
+	"uploads": [
+		{
+			"title": "test",
+			"course_index": "Course 1",
+			"retake": true,
+			"filename": "Magiscience-2.1.zip",
+			"timestamp": 1746639378
+		},
+		{
+			"title": "test 2",
+			"course_index": "Course 2",
+			"retake": true,
+			"filename": "Magiscience-2.2.zip",
+			"timestamp": 1746639399
+		},
+		{
+			"title": "test newest",
+			"course_index": "Course 4",
+			"retake": false,
+			"filename": "image-bart-removebg-preview.png",
+			"timestamp": 1746640041
+		},
+		{
+			"title": "sophie",
+			"course_index": "Course 3",
+			"retake": true,
+			"filename": "image-bart-removebg-preview.png",
+			"timestamp": 1746640551
+		}
+	]
+}
