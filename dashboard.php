@@ -8,21 +8,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 // Load courses
 $courses = [];
 $courseFile = "data/courses.json";
+$pageTitle = "Home";
+
+include 'components/Header.inc.php';
+
 if (file_exists($courseFile)) {
     $json = file_get_contents($courseFile);
     $courses = json_decode($json, true) ?? [];
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Upload Panel</title>
-</head>
-
-<body>
     <h2>Upload Course File</h2>
 
     <form action="upload.php" method="POST" enctype="multipart/form-data">
@@ -56,9 +50,25 @@ if (file_exists($courseFile)) {
     <hr>
     <h3>Existing Courses</h3>
     <ul>
-        <?php foreach ($courses as $course): ?>
+        <?php foreach ($courses as $index => $course): ?>
             <li>
                 <?= htmlspecialchars($course) ?>
+                
+                <!-- Move Up -->
+                    <form action="move_course.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="direction" value="up">
+                        <input type="hidden" name="index" value="<?= $index ?>">
+                        <button type="submit" <?php if ($index == 0): ?>disabled<?php endif; ?>>↑</button>
+                    </form>
+
+                <!-- Move Down -->
+                    <form action="move_course.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="direction" value="down">
+                        <input type="hidden" name="index" value="<?= $index ?>">
+                        <button type="submit" <?php if ($index == count($courses) - 1): ?>disabled<?php endif; ?>>↓</button>
+                    </form>
+
+                <!-- Delete -->
                 <form action="delete_course.php" method="POST" style="display:inline;">
                     <input type="hidden" name="delete_course" value="<?= htmlspecialchars($course) ?>">
                     <button type="submit" onclick="return confirm('Delete this course?')">Delete</button>
@@ -66,7 +76,6 @@ if (file_exists($courseFile)) {
             </li>
         <?php endforeach; ?>
     </ul>
-    <a href="logout.php">Logout</a>
 
 </body>
 

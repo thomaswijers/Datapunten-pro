@@ -5,28 +5,29 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['new_course'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_course'])) {
     $newCourse = trim($_POST['new_course']);
-    $dataFile = "data/data.json";
 
-    $allData = [];
-    if (file_exists($dataFile)) {
-        $json = file_get_contents($dataFile);
-        $allData = json_decode($json, true) ?? [];
-    }
+    if (!empty($newCourse)) {
+        $courseFile = "data/courses.json";
+        $courses = [];
 
-    // If uploads section exists, add a new course there
-    if (isset($allData['uploads'])) {
-        // Make sure the course is not already in the uploads (or course list elsewhere)
-        $allData['uploads'][] = [
-            'title' => $newCourse, // Temporary add the course name as title for later management
-            'course_index' => $newCourse,
-            'retake' => false,
-            'filename' => '',
-            'timestamp' => time()
-        ];
+        if (file_exists($courseFile)) {
+            $courses = json_decode(file_get_contents($courseFile), true) ?? [];
+        }
 
-        file_put_contents($dataFile, json_encode($allData, JSON_PRETTY_PRINT));
+        // Avoid duplicates (case-insensitive)
+        foreach ($courses as $existingCourse) {
+            if (strcasecmp($existingCourse, $newCourse) === 0) {
+                header("Location: dashboard.php");
+                exit(); // Don't add duplicate
+            }
+        }
+
+        $courses[] = $newCourse;
+
+        // Save updated list
+        file_put_contents($courseFile, json_encode($courses, JSON_PRETTY_PRINT));
     }
 }
 

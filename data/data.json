@@ -2,5 +2,28 @@
     "userdata": {
         "username": "admin",
         "password": "$2y$10$fgzIeM7x2hVvKnZPssfQnuGOx0v.hjzoKx6hqPxdtLdkGjeAwWUJi"
-    }
+    },
+    "uploads": [
+        {
+            "title": "Datapunt 1A",
+            "course_index": "Course 1",
+            "retake": false,
+            "filename": "Datapunten cursus 4-2425.pdf",
+            "timestamp": "2025-May-Thu"
+        },
+        {
+            "title": "Datapunt 3A",
+            "course_index": "Course 3",
+            "retake": false,
+            "filename": "C4W1 Mediageschiedenis.pptx",
+            "timestamp": "2025-May-Thu"
+        },
+        {
+            "title": "Datapunt 2A",
+            "course_index": "Course 2",
+            "retake": false,
+            "filename": "3G arduino.pptx",
+            "timestamp": "2025-May-Thu"
+        }
+    ]
 }

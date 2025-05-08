@@ -10,6 +10,6 @@
 <body>
     <header class="header">
         <div class="container">
-
+            <a href="logout.php">Logout</a>
         </div>
     </header>
