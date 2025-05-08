@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'course_index' => $courseIndex,
                 'retake' => $retake,
                 'filename' => $filename,
-                'timestamp' => date("Y/M/D")
+                'timestamp' => date("Y-M-D")
             ];
 
             file_put_contents($dataFile, json_encode($allData, JSON_PRETTY_PRINT));
