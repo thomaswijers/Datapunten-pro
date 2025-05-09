@@ -369,10 +369,18 @@ template {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 150px;
+  width: 180px;
   background-color: var(--primary-color);
   height: calc(100vh - 30px);
   padding: 15px;
+}
+.dashboard-sidebar .welcome {
+  color: #fff;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+.dashboard-sidebar .welcome span {
+  font-weight: bold;
 }
 .dashboard-sidebar a {
   color: #fff;

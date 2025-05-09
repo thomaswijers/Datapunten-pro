@@ -1,7 +1,7 @@
 <?php include 'includes/auth.php'; ?>
 
 <?php
-$pageTitle = "Dashboard | Datapunten";
+$pageTitle = "Dashboard | Cursussen";
 
 include 'components/Header.inc.php';
 ?>

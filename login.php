@@ -42,7 +42,7 @@ include 'components/Header.inc.php';
         <?php endif; ?>
         
         <form method="POST" action="login.php">
-            <input type="text" name="username" placeholder="Gebruikersnaam:" required>
+            <input type="text" name="username" placeholder="Gebruikersnaam" required>
             
             <input type="password" name="password" placeholder="Wachtwoord" required>
             
