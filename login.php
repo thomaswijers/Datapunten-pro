@@ -28,31 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$pageTitle = "Inloggen";
 
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-
-<body>
-    <h2>Welcome</h2>
-
-    <?php if (isset($error_message)): ?>
-        <p style="color: red;"><?php echo $error_message; ?></p>
-    <?php endif; ?>
-
-    <form method="POST" action="login.php">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
-
-        <button type="submit">Login</button>
-    </form>
-    <a href="./">Naar de website</a>
+include 'components/Header.inc.php';
+?>
+<body class="login">
+    <div class="login-box">
+        <h2>Welcome</h2>
+        
+        <?php if (isset($error_message)): ?>
+            <p style="color: red;"><?php echo $error_message; ?></p>
+        <?php endif; ?>
+        
+        <form method="POST" action="login.php">
+            <input type="text" name="username" placeholder="Gebruikersnaam:" required>
+            
+            <input type="password" name="password" placeholder="Wachtwoord" required>
+            
+            <button type="submit" class="btn primary-btn">Login</button>
+        </form>
+        <a href="./">Naar website</a>
+    </div>
 </body>
 
 </html>
