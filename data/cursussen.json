@@ -1,0 +1,17 @@
+[
+    {
+        "id": 3,
+        "title": "test",
+        "order": 1
+    },
+    {
+        "id": 2,
+        "title": "cursus 1",
+        "order": 2
+    },
+    {
+        "id": 1,
+        "title": "cursus 2",
+        "order": 3
+    }
+]
