@@ -1,0 +1,34 @@
+[
+    {
+        "id": 5,
+        "title": "cursus 3",
+        "cursus": "cursus 1",
+        "file": "uploads\/1746910610_image.png",
+        "herkansing": true,
+        "order": 1
+    },
+    {
+        "id": 4,
+        "title": "cursus 3",
+        "cursus": "test 2",
+        "file": "uploads\/1746910412_image.png",
+        "herkansing": true,
+        "order": 2
+    },
+    {
+        "id": 3,
+        "title": "Datapunt 3#",
+        "cursus": "cursus 1",
+        "file": "uploads\/1746910295_image-bart-removebg-preview.png",
+        "herkansing": false,
+        "order": 3
+    },
+    {
+        "id": 1,
+        "title": "cursus 3",
+        "cursus": "cursus 1",
+        "file": "uploads\/681fb86d01487_Marko_meme_2.png",
+        "herkansing": true,
+        "order": 6
+    }
+]
