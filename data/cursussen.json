@@ -1,12 +1,12 @@
 [
     {
         "id": 2,
-        "title": "cursus 1",
+        "title": "Cursus 2",
         "order": 1
     },
     {
         "id": 3,
-        "title": "test 2",
-        "order": 3
+        "title": "Cursus 1",
+        "order": 2
     }
 ]
