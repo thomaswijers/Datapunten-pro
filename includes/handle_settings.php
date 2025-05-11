@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeUsername'])) {
 
     if (!file_exists($dataPath)) {
         $_SESSION['settings_error'] = 'Gebruikersbestand niet gevonden.';
-        header('Location: ../settings');
+        header('Location: ../settings?error=1');
         exit;
     }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeUsername'])) {
     file_put_contents($dataPath, json_encode($userData, JSON_PRETTY_PRINT));
 
     $_SESSION['settings_success'] = 'Gebruikersnaam succesvol gewijzigd.';
-    header('Location: ../settings');
+    header('Location: ../settings?saved=1');
     exit;
 }
 

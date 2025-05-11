@@ -20,21 +20,36 @@ $settings = $userData['userSettings'];
         <?php include 'components/Sidebar.inc.php'; ?>
 
         <div class="dashboard-content">
-            <?php
-
-            if (isset($_SESSION['settings_error'])) {
-                echo '<div class="alert error">' . htmlspecialchars($_SESSION['settings_error']) . '</div>';
-                unset($_SESSION['settings_error']);
-            }
-
-            if (isset($_SESSION['settings_success'])) {
-                echo '<div class="alert success">' . htmlspecialchars($_SESSION['settings_success']) . '</div>';
-                unset($_SESSION['settings_success']);
-            }
-            ?>
-
             <h1>Instellingen</h1>
+            <?php if (isset($_GET['saved'])): ?>
+                <div id="successMessage" class="alert success">
+                    <b>Instellingen</b> opgeslagen!
+                </div>
+                <script>
+                    const url = new URL(window.location);
+                    url.searchParams.delete('saved');
+                    window.history.replaceState({}, document.title, url);
+                    setTimeout(() => {
+                        const msg = document.getElementById('successMessage');
+                        if (msg) msg.style.display = 'none';
+                    }, 3000);
+                </script>
+            <?php endif; ?>
 
+            <?php if (isset($_GET['error'])): ?>
+                <div id="successMessage" class="alert success">
+                    <?php $_SESSION['settings_error'] ?>
+                </div>
+                <script>
+                    const url = new URL(window.location);
+                    url.searchParams.delete('error');
+                    window.history.replaceState({}, document.title, url);
+                    setTimeout(() => {
+                        const msg = document.getElementById('successMessage');
+                        if (msg) msg.style.display = 'none';
+                    }, 3000);
+                </script>
+            <?php endif; ?>
             <!-- Settings Form -->
             <form method="POST" action="includes/handle_Settings.php" class="settings-form">
                 <?php foreach ($settings as $key => $meta): ?>
