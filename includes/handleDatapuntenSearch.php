@@ -1,46 +1,39 @@
 <?php
-// Load the datapunten and cursussen data
 $datapuntenPath = __DIR__ . '/../data/datapunten.json';
 $cursussenPath = __DIR__ . '/../data/cursussen.json';
 
-if (!file_exists($datapuntenPath)) {
-    die("Error: datapunten.json file not found.");
+if (!file_exists($datapuntenPath) || !file_exists($cursussenPath)) {
+    die("Error: Required JSON file not found.");
 }
 
-if (!file_exists($cursussenPath)) {
-    die("Error: cursussen.json file not found.");
-}
-
-// Read and decode JSON data
 $datapunten = json_decode(file_get_contents($datapuntenPath), true);
 $cursussen = json_decode(file_get_contents($cursussenPath), true);
 
-// If a search query is present, filter the datapunten
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $searchQuery = strtolower($_GET['search']);
-    $datapunten = array_filter($datapunten, function ($datapunt) use ($searchQuery) {
-        return strpos(strtolower($datapunt['title']), $searchQuery) !== false;
-    });
-}
+$searchQuery = isset($_GET['search']) ? strtolower($_GET['search']) : '';
 
-// Sort the cursussen (courses) by their order field
-usort($cursussen, function ($a, $b) {
-    return $a['order'] - $b['order'];
-});
+// Step 1: Sort cursussen by 'order'
+usort($cursussen, fn($a, $b) => $a['order'] <=> $b['order']);
 
-// Group the datapunten by cursus title
+// Step 2: Group datapunten by cursus title (only if they match the search)
 $groupedDatapunten = [];
-foreach ($datapunten as $datapunt) {
-    $groupedDatapunten[$datapunt['cursus']][] = $datapunt;
-}
 
-// Sort each group of datapunten by their order field
-foreach ($groupedDatapunten as $cursusTitle => $datapuntenGroup) {
-    usort($datapuntenGroup, function ($a, $b) {
-        return $a['order'] - $b['order'];
+foreach ($cursussen as $cursus) {
+    $cursusTitle = $cursus['title'];
+
+    // Filter datapunten for this cursus
+    $filtered = array_filter($datapunten, function ($dp) use ($cursusTitle, $searchQuery) {
+        $matchesCursus = isset($dp['cursus']) && $dp['cursus'] === $cursusTitle;
+        $matchesSearch = !$searchQuery || stripos($dp['title'], $searchQuery) !== false;
+        return $matchesCursus && $matchesSearch;
     });
-    $groupedDatapunten[$cursusTitle] = $datapuntenGroup;
+
+    if (!empty($filtered)) {
+        // Sort datapunten inside the group by their own 'order'
+        usort($filtered, fn($a, $b) => $a['order'] <=> $b['order']);
+        $groupedDatapunten[$cursusTitle] = array_values($filtered);
+    }
 }
 
-// Return the grouped datapunten by cursus in JSON format
+// Output JSON
+header('Content-Type: application/json');
 echo json_encode($groupedDatapunten);

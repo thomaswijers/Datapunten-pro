@@ -10,11 +10,6 @@
             "type": "checkbox",
             "value": false
         },
-        "adhdMode": {
-            "label": "ADHD Mode",
-            "type": "checkbox",
-            "value": true
-        },
         "websiteColor": {
             "label": "Website Kleur",
             "type": "color",

@@ -51,7 +51,7 @@
             <label for="bestand-edit" class="custom-file-upload">
                 Custom Upload
             </label>
-            <input type="file" name="bestand" id="bestand-edit" class="bestand" placeholder="Bestand">
+            <input type="file" name="edit_file" id="bestand-edit" class="bestand" placeholder="Bestand">
 
             <label class="checkbox-container">
                 <span class="checkbox-text">Herkansing</span>

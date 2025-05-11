@@ -9,6 +9,8 @@ $cursusPath = __DIR__ . '/data/cursussen.json';
 $datapunten = file_exists($dataPath) ? json_decode(file_get_contents($dataPath), true) : [];
 $cursussen = file_exists($cursusPath) ? json_decode(file_get_contents($cursusPath), true) : [];
 
+// Include the file upload logic
+include 'includes/handle_upload.php';
 include 'includes/handle_add_datapunt.php';
 include 'includes/handle_delete_datapunt.php';
 include 'includes/handle_edit_datapunt.php';

@@ -20,22 +20,20 @@ $settings = $userData['userSettings'];
         <?php include 'components/Sidebar.inc.php'; ?>
 
         <div class="dashboard-content">
-            <h1>Instellingen</h1>
+            <?php
 
-            <?php if (isset($_GET['saved'])): ?>
-                <div id="successMessage" class="alert success">
-                    <b>Instellingen</b> opgeslagen!
-                </div>
-                <script>
-                    const url = new URL(window.location);
-                    url.searchParams.delete('saved');
-                    window.history.replaceState({}, document.title, url);
-                    setTimeout(() => {
-                        const msg = document.getElementById('successMessage');
-                        if (msg) msg.style.display = 'none';
-                    }, 3000);
-                </script>
-            <?php endif; ?>
+            if (isset($_SESSION['settings_error'])) {
+                echo '<div class="alert error">' . htmlspecialchars($_SESSION['settings_error']) . '</div>';
+                unset($_SESSION['settings_error']);
+            }
+
+            if (isset($_SESSION['settings_success'])) {
+                echo '<div class="alert success">' . htmlspecialchars($_SESSION['settings_success']) . '</div>';
+                unset($_SESSION['settings_success']);
+            }
+            ?>
+
+            <h1>Instellingen</h1>
 
             <!-- Settings Form -->
             <form method="POST" action="includes/handle_Settings.php" class="settings-form">
@@ -56,8 +54,16 @@ $settings = $userData['userSettings'];
                 <?php endforeach; ?>
 
                 <div class="form-group">
+                    <label for="">Gebruikersnaam wijzigen</label>
+                    <button type="button" class="btn secondary-btn setting-btn"
+                        onclick="openModal('usernameModal')">Gebruikersnaam
+                        wijzigen</button>
+                </div>
+
+                <div class="form-group">
                     <label for="">Wachtwoord wijzigen</label>
-                    <button type="button" class="btn secondary-btn setting-btn" onclick="openPasswordModal()">Wachtwoord
+                    <button type="button" class="btn secondary-btn setting-btn"
+                        onclick="openModal('passwordModal')">Wachtwoord
                         wijzigen</button>
                 </div>
 
@@ -75,7 +81,27 @@ $settings = $userData['userSettings'];
                     <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord" required>
                     <div class="modal-actions">
                         <button type="submit" class="btn primary-btn">Opslaan</button>
-                        <button type="button" onclick="closePasswordModal()" class="close-btn">
+                        <button type="button" onclick="closeModal('passwordModal')" class="close-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path
+                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Username Modal -->
+        <div id="usernameModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>gebruikersnaam wijzigen</h2>
+                <form method="POST" action="includes/handle_Settings.php">
+                    <input type="hidden" name="changeUsername" value="1">
+                    <input type="text" id="newUsername" name="newUsername" placeholder="Nieuwe gebruikersnaam" required>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn primary-btn">Opslaan</button>
+                        <button type="button" onclick="closeModal('usernameModal')" class="close-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                                 <path
                                     d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
@@ -87,11 +113,11 @@ $settings = $userData['userSettings'];
         </div>
 
         <script>
-            function openPasswordModal() {
-                document.getElementById('passwordModal').style.display = 'flex';
+            function openModal(id) {
+                document.getElementById(id).style.display = 'flex';
             }
-            function closePasswordModal() {
-                document.getElementById('passwordModal').style.display = 'none';
+            function closeModal(id) {
+                document.getElementById(id).style.display = 'none';
             }
         </script>
     </div>

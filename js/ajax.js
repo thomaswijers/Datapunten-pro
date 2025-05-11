@@ -20,6 +20,9 @@ function handleSearch(query = "") {
 			for (const cursusTitle in data) {
 				const cursusGroup = data[cursusTitle];
 
+				// Sort cursussen by their 'order' field to display them in the correct order
+				cursusGroup.sort((a, b) => a.order - b.order);
+
 				// Create the container for the cursus
 				const datapointContainer = document.createElement("div");
 				datapointContainer.classList.add("datapoint-container");
