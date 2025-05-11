@@ -1,6 +1,6 @@
 <?php
 include 'includes/auth.php';
-include 'includes/handle_Settings.php';
+include 'includes/handle_settings.php';
 
 $pageTitle = "Dashboard | Settings";
 include 'components/Header.inc.php';
@@ -51,7 +51,7 @@ $settings = $userData['userSettings'];
                 </script>
             <?php endif; ?>
             <!-- Settings Form -->
-            <form method="POST" action="includes/handle_Settings.php" class="settings-form">
+            <form method="POST" action="includes/handle_settings" class="settings-form">
                 <?php foreach ($settings as $key => $meta): ?>
                     <div class="form-group">
                         <?php if ($meta['type'] === 'checkbox'): ?>
@@ -91,7 +91,7 @@ $settings = $userData['userSettings'];
         <div id="passwordModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <h2>Wachtwoord wijzigen</h2>
-                <form method="POST" action="includes/handle_Settings.php">
+                <form method="POST" action="includes/handle_settings">
                     <input type="hidden" name="changePassword" value="1">
                     <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord" required>
                     <div class="modal-actions">
@@ -111,7 +111,7 @@ $settings = $userData['userSettings'];
         <div id="usernameModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <h2>gebruikersnaam wijzigen</h2>
-                <form method="POST" action="includes/handle_Settings.php">
+                <form method="POST" action="includes/handle_settings">
                     <input type="hidden" name="changeUsername" value="1">
                     <input type="text" id="newUsername" name="newUsername" placeholder="Nieuwe gebruikersnaam" required>
                     <div class="modal-actions">
