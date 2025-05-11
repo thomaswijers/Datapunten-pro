@@ -396,7 +396,7 @@ template {
   display: flex;
   flex-direction: column;
   max-height: 88vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .dashboard-content .course-list .single-course,
 .dashboard-content .course-list .single-datapoint,
