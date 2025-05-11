@@ -1,0 +1,82 @@
+.homepage {
+	.search-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		height: 220px;
+		background-color: var(--primary-color);
+		color: var(--text-color);
+
+		h1,
+		h3 {
+			margin: 0;
+		}
+	}
+
+	.searchbar {
+		position: relative;
+		input[type="search"] {
+			width: 100%;
+			border: solid 3px var(--primary-color);
+			border-radius: 5px;
+			margin-top: 30px;
+		}
+
+		svg {
+			width: 20px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(25%);
+			right: 15px;
+			fill: var(--primary-color);
+		}
+	}
+
+	.course-list {
+		.datapoint-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+
+			.single-datapoint {
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				justify-content: space-between;
+				background-color: #ededed;
+				padding: 30px 20px;
+
+				.btn {
+					text-decoration: none;
+				}
+
+				.label {
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: var(--label-color);
+					color: var(--label-text-color);
+					padding: 5px 10px;
+					border-radius: 0 0 10px 0;
+				}
+
+				h3 {
+					font-size: 26px;
+				}
+			}
+
+			h2 {
+				grid-column: 1/4;
+				margin: 0;
+				margin-top: 20px;
+			}
+
+			h3 {
+				margin: 0;
+			}
+		}
+	}
+}

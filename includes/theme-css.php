@@ -1,13 +1,10 @@
 <?php
-if (isset($_SESSION['user_settings'])) {
-    // Access the 'value' of websiteColor and textColor from userSettings array
-    $primaryColor = $_SESSION['user_settings']['websiteColor']['value'] ?? '#050517';
-    $textColor = $_SESSION['user_settings']['textColor']['value'] ?? '#ffffff';
-} else {
-    $userData = json_decode(file_get_contents(__DIR__ . '/../data/user.json'), true);
-    $primaryColor = $userData['userSettings']['websiteColor']['value'] ?? '#050517';
-    $textColor = $userData['userSettings']['textColor']['value'] ?? '#ffffff';
-}
+$userData = json_decode(file_get_contents(__DIR__ . '/../data/user.json'), true);
+$primaryColor = $userData['userSettings']['websiteColor']['value'] ?? '#050517';
+$textColor = $userData['userSettings']['textColor']['value'] ?? '#ffffff';
+$labelColor = $userData['userSettings']['labelColor']['value'] ?? '#f3080d';
+$labelTextColor = $userData['userSettings']['labelTextColor']['value'] ?? '#ffffff';
+
 ?>
 <style>
     :root {
@@ -16,6 +13,12 @@ if (isset($_SESSION['user_settings'])) {
         ;
         --text-color:
             <?= htmlspecialchars($textColor, ENT_QUOTES, 'UTF-8') ?>
+        ;
+        --label-color:
+            <?= htmlspecialchars($labelColor, ENT_QUOTES, 'UTF-8') ?>
+        ;
+        --label-text-color:
+            <?= htmlspecialchars($labelTextColor, ENT_QUOTES, 'UTF-8') ?>
         ;
     }
 </style>

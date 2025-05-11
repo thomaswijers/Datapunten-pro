@@ -42,81 +42,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
 }
 ?>
 
-<body class="dashboard datapunten">
-    <?php include 'components/Sidebar.inc.php'; ?>
+<body>
+    <div class="dashboard datapunten">
+        <?php include 'components/Sidebar.inc.php'; ?>
 
-    <div class="dashboard-content">
-        <h1>Instellingen</h1>
+        <div class="dashboard-content">
+            <h1>Instellingen</h1>
 
-        <?php if (isset($_GET['saved'])): ?>
-            <div id="successMessage" class="alert success">
-                <b>Instellingen</b> opgeslagen!
-            </div>
-            <script>
-                const url = new URL(window.location);
-                url.searchParams.delete('saved');
-                window.history.replaceState({}, document.title, url);
-                setTimeout(() => {
-                    const msg = document.getElementById('successMessage');
-                    if (msg) msg.style.display = 'none';
-                }, 3000);
-            </script>
-        <?php endif; ?>
-
-        <!-- Settings Form -->
-        <form method="POST" class="settings-form">
-            <?php foreach ($settings as $key => $meta): ?>
-                <div class="form-group">
-                    <?php if ($meta['type'] === 'checkbox'): ?>
-                        <label class="checkbox-container">
-                            <span class="checkbox-text"><?= htmlspecialchars($meta['label']) ?></span>
-                            <input type="checkbox" name="<?= $key ?>" <?= $meta['value'] ? 'checked' : '' ?>>
-                            <span class="checkmark"></span>
-                        </label>
-                    <?php else: ?>
-                        <label for="<?= $key ?>"><?= htmlspecialchars($meta['label']) ?></label>
-                        <input type="<?= htmlspecialchars($meta['type']) ?>" id="<?= $key ?>" name="<?= $key ?>"
-                            value="<?= htmlspecialchars($meta['value']) ?>">
-                    <?php endif; ?>
+            <?php if (isset($_GET['saved'])): ?>
+                <div id="successMessage" class="alert success">
+                    <b>Instellingen</b> opgeslagen!
                 </div>
-            <?php endforeach; ?>
+                <script>
+                    const url = new URL(window.location);
+                    url.searchParams.delete('saved');
+                    window.history.replaceState({}, document.title, url);
+                    setTimeout(() => {
+                        const msg = document.getElementById('successMessage');
+                        if (msg) msg.style.display = 'none';
+                    }, 3000);
+                </script>
+            <?php endif; ?>
 
-            <div class="form-group">
-                <label for="">Wachtwoord wijzigen</label>
-                <button type="button" class="btn secondary-btn setting-btn" onclick="openPasswordModal()">Wachtwoord
-                    wijzigen</button>
-            </div>
+            <!-- Settings Form -->
+            <form method="POST" class="settings-form">
+                <?php foreach ($settings as $key => $meta): ?>
+                    <div class="form-group">
+                        <?php if ($meta['type'] === 'checkbox'): ?>
+                            <label class="checkbox-container">
+                                <span class="checkbox-text"><?= htmlspecialchars($meta['label']) ?></span>
+                                <input type="checkbox" name="<?= $key ?>" <?= $meta['value'] ? 'checked' : '' ?>>
+                                <span class="checkmark"></span>
+                            </label>
+                        <?php else: ?>
+                            <label for="<?= $key ?>"><?= htmlspecialchars($meta['label']) ?></label>
+                            <input type="<?= htmlspecialchars($meta['type']) ?>" id="<?= $key ?>" name="<?= $key ?>"
+                                value="<?= htmlspecialchars($meta['value']) ?>">
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
 
-            <button type="submit" class="btn primary-btn setting-submit-btn">Opslaan</button>
+                <div class="form-group">
+                    <label for="">Wachtwoord wijzigen</label>
+                    <button type="button" class="btn secondary-btn setting-btn" onclick="openPasswordModal()">Wachtwoord
+                        wijzigen</button>
+                </div>
+
+                <button type="submit" class="btn primary-btn setting-submit-btn" id="setting-submit-btn"">Opslaan</button>
         </form>
     </div>
 
     <!-- Password Modal (outside main form) -->
-    <div id="passwordModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h2>Wachtwoord wijzigen</h2>
-            <form method="POST">
-                <input type="hidden" name="changePassword" value="1">
-                <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord" required>
-                <div class="modal-actions">
-                    <button type="submit" class="btn primary-btn">Opslaan</button>
-                    <button type="button" onclick="closePasswordModal()" class="close-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                            <path
-                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-                        </svg>
-                    </button>
-                </div>
-            </form>
+    <div id=" passwordModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <h2>Wachtwoord wijzigen</h2>
+                        <form method="POST">
+                            <input type="hidden" name="changePassword" value="1">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord"
+                                required>
+                            <div class="modal-actions">
+                                <button type="submit" class="btn primary-btn">Opslaan</button>
+                                <button type="button" onclick="closePasswordModal()" class="close-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
         </div>
-    </div>
 
-    <script>
-        function openPasswordModal() {
-            document.getElementById('passwordModal').style.display = 'flex';
-        }
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-        }
-    </script>
+        <script>
+            function openPasswordModal() {
+                document.getElementById('passwordModal').style.display = 'flex';
+            }
+            function closePasswordModal() {
+                document.getElementById('passwordModal').style.display = 'none';
+            }
+        </script>
+    </div>
 </body>

@@ -3,12 +3,28 @@
 @import "includes/sidebar";
 @import "includes/dashboard";
 @import "includes/settings";
+@import "includes/home";
 
 $primary-font: "Inter", sans-serif;
 
 body {
 	font-family: $primary-font;
 	font-size: 18px;
+	overflow: hidden;
+
+	&.hidden-cursor {
+		cursor: none;
+
+		a,
+		svg,
+		input,
+		select,
+		.custom-file-upload,
+		.checkbox-container,
+		.btn {
+			cursor: none !important;
+		}
+	}
 }
 
 h2 {
@@ -20,6 +36,7 @@ input[type="number"],
 input[type="tel"],
 input[type="email"],
 input[type="password"],
+input[type="search"],
 select {
 	min-width: 500px;
 	padding: 10px 5px;
@@ -213,5 +230,21 @@ input[type="file"] {
 	&.success {
 		background-color: #d1e7dd;
 		color: #115148;
+	}
+}
+
+#frog-cursor {
+	display: none;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	pointer-events: none; /* Prevents the div from interfering with other elements */
+	background-image: url("../images/frog-cursor.png");
+	background-size: contain;
+	z-index: 999;
+
+	&.show {
+		display: block;
 	}
 }

@@ -537,9 +537,91 @@ template {
   font-weight: bold;
 }
 
+.homepage .search-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 220px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+.homepage .search-header h1,
+.homepage .search-header h3 {
+  margin: 0;
+}
+.homepage .searchbar {
+  position: relative;
+}
+.homepage .searchbar input[type=search] {
+  width: 100%;
+  border: solid 3px var(--primary-color);
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.homepage .searchbar svg {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(25%);
+  right: 15px;
+  fill: var(--primary-color);
+}
+.homepage .course-list .datapoint-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+.homepage .course-list .datapoint-container .single-datapoint {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  background-color: #ededed;
+  padding: 30px 20px;
+}
+.homepage .course-list .datapoint-container .single-datapoint .btn {
+  text-decoration: none;
+}
+.homepage .course-list .datapoint-container .single-datapoint .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--label-color);
+  color: var(--label-text-color);
+  padding: 5px 10px;
+  border-radius: 0 0 10px 0;
+}
+.homepage .course-list .datapoint-container .single-datapoint h3 {
+  font-size: 26px;
+}
+.homepage .course-list .datapoint-container h2 {
+  grid-column: 1/4;
+  margin: 0;
+  margin-top: 20px;
+}
+.homepage .course-list .datapoint-container h3 {
+  margin: 0;
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-size: 18px;
+  overflow: hidden;
+}
+body.hidden-cursor {
+  cursor: none;
+}
+body.hidden-cursor a,
+body.hidden-cursor svg,
+body.hidden-cursor input,
+body.hidden-cursor select,
+body.hidden-cursor .custom-file-upload,
+body.hidden-cursor .checkbox-container,
+body.hidden-cursor .btn {
+  cursor: none !important;
 }
 
 h2 {
@@ -551,6 +633,7 @@ input[type=number],
 input[type=tel],
 input[type=email],
 input[type=password],
+input[type=search],
 select {
   min-width: 500px;
   padding: 10px 5px;
@@ -727,4 +810,19 @@ input[type=file] {
 .alert.success {
   background-color: #d1e7dd;
   color: #115148;
+}
+
+#frog-cursor {
+  display: none;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: none; /* Prevents the div from interfering with other elements */
+  background-image: url("../images/frog-cursor.png");
+  background-size: contain;
+  z-index: 999;
+}
+#frog-cursor.show {
+  display: block;
 }
