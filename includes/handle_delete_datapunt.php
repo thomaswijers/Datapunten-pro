@@ -13,6 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $datapunten = array_values($datapunten);
 
     file_put_contents($dataPath, json_encode($datapunten, JSON_PRETTY_PRINT));
-    header("Location: datapunten.php");
+    header("Location: datapunten");
     exit;
 }

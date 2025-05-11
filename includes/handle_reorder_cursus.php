@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['move_order'])) {
         }
 
         file_put_contents($dataPath, json_encode($cursussen, JSON_PRETTY_PRINT));
-        header("Location: cursussen.php");
+        header("Location: cursussen");
         exit;
     }
 }

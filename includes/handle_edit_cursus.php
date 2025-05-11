@@ -11,6 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_cursus'])) {
     }
 
     file_put_contents($dataPath, json_encode($cursussen, JSON_PRETTY_PRINT));
-    header("Location: cursussen.php");
+    header("Location: cursussen");
     exit;
 }

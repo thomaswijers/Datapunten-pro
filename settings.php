@@ -1,6 +1,7 @@
-<?php include 'includes/auth.php'; ?>
-
 <?php
+include 'includes/auth.php';
+include 'includes/handle_Settings.php';
+
 $pageTitle = "Dashboard | Settings";
 include 'components/Header.inc.php';
 
@@ -12,34 +13,6 @@ if (!isset($userData['userSettings'])) {
     $userData['userSettings'] = [];
 }
 $settings = $userData['userSettings'];
-
-// Handle password change request
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changePassword']) && isset($_POST['newPassword'])) {
-    $newPassword = $_POST['newPassword'];
-    if (!empty($newPassword)) {
-        $userData['userLogin']['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
-        file_put_contents($dataPath, json_encode($userData, JSON_PRETTY_PRINT));
-        header("Location: settings.php?saved=1");
-        exit;
-    }
-}
-
-// Handle settings save
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
-    foreach ($settings as $key => &$meta) {
-        if ($meta['type'] === 'checkbox') {
-            $meta['value'] = isset($_POST[$key]);
-        } else {
-            $meta['value'] = $_POST[$key] ?? '';
-        }
-    }
-
-    $userData['userSettings'] = $settings;
-    file_put_contents($dataPath, json_encode($userData, JSON_PRETTY_PRINT));
-    $_SESSION['user_settings'] = array_map(fn($s) => $s['value'], $settings); // Save only values in session
-    header("Location: settings.php?saved=1");
-    exit;
-}
 ?>
 
 <body>
@@ -65,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
             <?php endif; ?>
 
             <!-- Settings Form -->
-            <form method="POST" class="settings-form">
+            <form method="POST" action="includes/handle_Settings.php" class="settings-form">
                 <?php foreach ($settings as $key => $meta): ?>
                     <div class="form-group">
                         <?php if ($meta['type'] === 'checkbox'): ?>
@@ -88,29 +61,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
                         wijzigen</button>
                 </div>
 
-                <button type="submit" class="btn primary-btn setting-submit-btn" id="setting-submit-btn"">Opslaan</button>
-        </form>
-    </div>
+                <button type="submit" class="btn primary-btn setting-submit-btn"
+                    id="setting-submit-btn">Opslaan</button>
+            </form>
+        </div>
 
-    <!-- Password Modal (outside main form) -->
-    <div id=" passwordModal" class="modal" style="display: none;">
-                    <div class="modal-content">
-                        <h2>Wachtwoord wijzigen</h2>
-                        <form method="POST">
-                            <input type="hidden" name="changePassword" value="1">
-                            <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord"
-                                required>
-                            <div class="modal-actions">
-                                <button type="submit" class="btn primary-btn">Opslaan</button>
-                                <button type="button" onclick="closePasswordModal()" class="close-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                        <path
-                                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
+        <!-- Password Modal -->
+        <div id="passwordModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Wachtwoord wijzigen</h2>
+                <form method="POST" action="includes/handle_Settings.php">
+                    <input type="hidden" name="changePassword" value="1">
+                    <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord" required>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn primary-btn">Opslaan</button>
+                        <button type="button" onclick="closePasswordModal()" class="close-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path
+                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                            </svg>
+                        </button>
                     </div>
+                </form>
+            </div>
         </div>
 
         <script>
@@ -123,3 +96,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
         </script>
     </div>
 </body>
+
+</html>

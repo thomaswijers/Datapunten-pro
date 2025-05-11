@@ -28,6 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_datapunt'])) {
     }
 
     file_put_contents($dataPath, json_encode($datapunten, JSON_PRETTY_PRINT));
-    header("Location: datapunten.php?success=edited");
+    header("Location: datapunten?success=edited");
     exit;
 }

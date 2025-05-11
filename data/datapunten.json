@@ -1,11 +1,19 @@
 [
     {
+        "id": 4,
+        "title": "3C",
+        "cursus": "Cursus 3",
+        "file": "uploads\/1746967850_3C.7z",
+        "herkansing": false,
+        "order": 1
+    },
+    {
         "id": 3,
         "title": "Datapunt 3B",
         "cursus": "Cursus 1",
         "file": "uploads\/1746926177_image.png",
         "herkansing": true,
-        "order": 1
+        "order": 2
     },
     {
         "id": 2,
@@ -13,7 +21,7 @@
         "cursus": "Cursus 2",
         "file": "uploads\/1746917026_image.png",
         "herkansing": false,
-        "order": 3
+        "order": 4
     },
     {
         "id": 1,
@@ -21,6 +29,6 @@
         "cursus": "Cursus 1",
         "file": "uploads\/1746916201_image.png",
         "herkansing": false,
-        "order": 4
+        "order": 5
     }
 ]

@@ -31,6 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_datapunt'])) {
 
     usort($datapunten, fn($a, $b) => $a['order'] <=> $b['order']);
     file_put_contents($dataPath, json_encode($datapunten, JSON_PRETTY_PRINT));
-    header("Location: datapunten.php?success=added");
+    header("Location: datapunten?success=added");
     exit;
 }
