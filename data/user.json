@@ -2,13 +2,33 @@
     "userLogin": {
         "id": 1,
         "username": "admin",
-        "password": "$2y$10$fgzIeM7x2hVvKnZPssfQnuGOx0v.hjzoKx6hqPxdtLdkGjeAwWUJi"
+        "password": "$2y$10$LImSLz3i5W3t\/\/7RSLowC.6zvFzGsG2iZgBNwelLxHOhOMjTczMmS"
     },
     "userSettings": {
-        "darkMode": false,
-        "frogCursor": false,
-        "adhdMode": false,
-        "textColor": "#ffffff",
-        "websiteColor": "#170513"
+        "darkMode": {
+            "label": "Dark mode",
+            "type": "checkbox",
+            "value": true
+        },
+        "frogCursor": {
+            "label": "Frog Cursor",
+            "type": "checkbox",
+            "value": true
+        },
+        "adhdMode": {
+            "label": "ADHD Mode",
+            "type": "checkbox",
+            "value": true
+        },
+        "websiteColor": {
+            "label": "Website Kleur",
+            "type": "color",
+            "value": "#170513"
+        },
+        "textColor": {
+            "label": "Tekst Kleur",
+            "type": "color",
+            "value": "#ffffff"
+        }
     }
 }

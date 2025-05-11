@@ -1,0 +1,25 @@
+.settings-form {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	gap: 15px;
+	background-color: #fff;
+
+	.setting-btn {
+		width: fit-content;
+	}
+	.setting-submit-btn {
+		width: fit-content;
+		align-self: flex-end;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		label {
+			font-weight: bold;
+		}
+	}
+}

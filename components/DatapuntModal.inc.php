@@ -1,5 +1,5 @@
 <div id="addModal" class="modal">
-    <div>
+    <div class="modal-content">
         <form method="POST" action="datapunten.php" enctype="multipart/form-data">
             <input type="text" name="titel" id="titel" placeholder="Cursus titel" required>
 
@@ -34,7 +34,7 @@
 </div>
 
 <div id="editModal" class="modal">
-    <div>
+    <div class="modal-content">
         <form method="POST" action="datapunten.php" enctype="multipart/form-data">
             <input type="hidden" name="edit_id" id="edit_id">
 

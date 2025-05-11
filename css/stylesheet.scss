@@ -2,6 +2,7 @@
 @import "includes/login";
 @import "includes/sidebar";
 @import "includes/dashboard";
+@import "includes/settings";
 
 $primary-font: "Inter", sans-serif;
 
@@ -162,7 +163,7 @@ input[type="file"] {
 	align-items: center;
 	justify-content: center;
 
-	> div {
+	> .modal-content {
 		position: relative;
 		background: white;
 		padding: 30px;

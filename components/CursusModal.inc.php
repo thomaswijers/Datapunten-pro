@@ -1,5 +1,5 @@
 <div id="cursusModal" class="modal">
-    <div>
+    <div class="modal-content">
         <h2>Cursus</h2>
         <form method="POST" action="cursussen.php">
             <input type="text" name="cursus_titel" id="cursus_titel" placeholder="Cursus titel" required>

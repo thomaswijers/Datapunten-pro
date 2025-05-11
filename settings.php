@@ -4,45 +4,39 @@
 $pageTitle = "Dashboard | Settings";
 include 'components/Header.inc.php';
 
-// Path to the settings file
 $dataPath = __DIR__ . '/data/user.json';
 $userData = file_exists($dataPath) ? json_decode(file_get_contents($dataPath), true) : [];
 
-// Define settings schema for easier future expansion
-$settingsSchema = [
-    'darkMode' => ['label' => 'Dark mode', 'type' => 'checkbox'],
-    'frogCursor' => ['label' => 'Frog Cursor', 'type' => 'checkbox'],
-    'adhdMode' => ['label' => 'ADHD Mode', 'type' => 'checkbox'],
-    'websiteColor' => ['label' => 'Website Kleur', 'type' => 'color'],
-    'textColor' => ['label' => 'Tekst Kleur', 'type' => 'color'],
-];
-
-// Initialize settings if missing
+// Ensure userSettings exists
 if (!isset($userData['userSettings'])) {
     $userData['userSettings'] = [];
 }
 $settings = $userData['userSettings'];
 
-// Merge defaults from schema
-foreach ($settingsSchema as $key => $meta) {
-    if (!isset($settings[$key])) {
-        $settings[$key] = $meta['type'] === 'checkbox' ? false : '';
+// Handle password change request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changePassword']) && isset($_POST['newPassword'])) {
+    $newPassword = $_POST['newPassword'];
+    if (!empty($newPassword)) {
+        $userData['userLogin']['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        file_put_contents($dataPath, json_encode($userData, JSON_PRETTY_PRINT));
+        header("Location: settings.php?saved=1");
+        exit;
     }
 }
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    foreach ($settingsSchema as $key => $meta) {
+// Handle settings save
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['changePassword'])) {
+    foreach ($settings as $key => &$meta) {
         if ($meta['type'] === 'checkbox') {
-            $settings[$key] = isset($_POST[$key]);
+            $meta['value'] = isset($_POST[$key]);
         } else {
-            $settings[$key] = $_POST[$key] ?? '';
+            $meta['value'] = $_POST[$key] ?? '';
         }
     }
 
     $userData['userSettings'] = $settings;
     file_put_contents($dataPath, json_encode($userData, JSON_PRETTY_PRINT));
-    $_SESSION['user_settings'] = $settings;
+    $_SESSION['user_settings'] = array_map(fn($s) => $s['value'], $settings); // Save only values in session
     header("Location: settings.php?saved=1");
     exit;
 }
@@ -58,14 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="successMessage" class="alert success">
                 <b>Instellingen</b> opgeslagen!
             </div>
-
             <script>
-                // Immediately remove ?success=... from URL to prevent message on refresh
                 const url = new URL(window.location);
                 url.searchParams.delete('saved');
                 window.history.replaceState({}, document.title, url);
-
-                // Then hide the message after 5 seconds
                 setTimeout(() => {
                     const msg = document.getElementById('successMessage');
                     if (msg) msg.style.display = 'none';
@@ -73,28 +63,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </script>
         <?php endif; ?>
 
+        <!-- Settings Form -->
         <form method="POST" class="settings-form">
-            <?php foreach ($settingsSchema as $key => $meta): ?>
+            <?php foreach ($settings as $key => $meta): ?>
                 <div class="form-group">
                     <?php if ($meta['type'] === 'checkbox'): ?>
                         <label class="checkbox-container">
                             <span class="checkbox-text"><?= htmlspecialchars($meta['label']) ?></span>
-                            <input type="checkbox" name="<?= $key ?>" <?= $settings[$key] ? 'checked' : '' ?>>
+                            <input type="checkbox" name="<?= $key ?>" <?= $meta['value'] ? 'checked' : '' ?>>
                             <span class="checkmark"></span>
                         </label>
-                    <?php elseif ($meta['type'] === 'color'): ?>
-                        <label for="<?= $key ?>"><?= htmlspecialchars($meta['label']) ?></label>
-                        <input type="color" id="<?= $key ?>" name="<?= $key ?>"
-                            value="<?= htmlspecialchars($settings[$key]) ?>">
                     <?php else: ?>
                         <label for="<?= $key ?>"><?= htmlspecialchars($meta['label']) ?></label>
-                        <input type="<?= $meta['type'] ?>" id="<?= $key ?>" name="<?= $key ?>"
-                            value="<?= htmlspecialchars($settings[$key]) ?>">
+                        <input type="<?= htmlspecialchars($meta['type']) ?>" id="<?= $key ?>" name="<?= $key ?>"
+                            value="<?= htmlspecialchars($meta['value']) ?>">
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
 
-            <button type="submit" class="btn primary-btn setting-btn">Opslaan</button>
+            <div class="form-group">
+                <label for="">Wachtwoord wijzigen</label>
+                <button type="button" class="btn secondary-btn setting-btn" onclick="openPasswordModal()">Wachtwoord
+                    wijzigen</button>
+            </div>
+
+            <button type="submit" class="btn primary-btn setting-submit-btn">Opslaan</button>
         </form>
     </div>
+
+    <!-- Password Modal (outside main form) -->
+    <div id="passwordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Wachtwoord wijzigen</h2>
+            <form method="POST">
+                <input type="hidden" name="changePassword" value="1">
+                <input type="password" id="newPassword" name="newPassword" placeholder="Nieuw wachtwoord" required>
+                <div class="modal-actions">
+                    <button type="submit" class="btn primary-btn">Opslaan</button>
+                    <button type="button" onclick="closePasswordModal()" class="close-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path
+                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'flex';
+        }
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+    </script>
 </body>

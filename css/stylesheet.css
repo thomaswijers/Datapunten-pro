@@ -511,17 +511,30 @@ template {
 .dashboard-content .datapoint-list .single-datapoint .datapoint-actions .order-control > form {
   height: 16px;
 }
-.dashboard-content .settings-form {
+
+.settings-form {
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 15px;
   background-color: #fff;
 }
-.dashboard-content .settings-form .setting-btn {
+.settings-form .setting-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.settings-form .setting-submit-btn {
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-end;
+}
+.settings-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.settings-form .form-group label {
+  font-weight: bold;
 }
 
 body {
@@ -670,7 +683,7 @@ input[type=file] {
   align-items: center;
   justify-content: center;
 }
-.modal > div {
+.modal > .modal-content {
   position: relative;
   background: white;
   padding: 30px;

@@ -1,11 +1,12 @@
 <?php
 if (isset($_SESSION['user_settings'])) {
-    $primaryColor = $_SESSION['user_settings']['websiteColor'] ?? '#050517';
-    $textColor = $_SESSION['user_settings']['textColor'] ?? '#ffffff';
+    // Access the 'value' of websiteColor and textColor from userSettings array
+    $primaryColor = $_SESSION['user_settings']['websiteColor']['value'] ?? '#050517';
+    $textColor = $_SESSION['user_settings']['textColor']['value'] ?? '#ffffff';
 } else {
     $userData = json_decode(file_get_contents(__DIR__ . '/../data/user.json'), true);
-    $primaryColor = $userData['userSettings']['websiteColor'] ?? '#050517';
-    $textColor = $userData['userSettings']['textColor'] ?? '#ffffff';
+    $primaryColor = $userData['userSettings']['websiteColor']['value'] ?? '#050517';
+    $textColor = $userData['userSettings']['textColor']['value'] ?? '#ffffff';
 }
 ?>
 <style>
