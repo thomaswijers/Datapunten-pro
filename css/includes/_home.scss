@@ -39,6 +39,11 @@
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			gap: 15px;
+			margin-bottom: 20px;
+
+			&:first-of-type {
+				margin-top: 20px;
+			}
 
 			.single-datapoint {
 				position: relative;
@@ -71,7 +76,6 @@
 			h2 {
 				grid-column: 1/4;
 				margin: 0;
-				margin-top: 20px;
 			}
 
 			h3 {
