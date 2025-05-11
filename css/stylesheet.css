@@ -345,7 +345,7 @@ template {
   padding: 15px;
 }
 .dashboard-sidebar .welcome {
-  color: #fff;
+  color: var(--text-color);
   margin: 0 0 20px 0;
   font-size: 18px;
 }
@@ -353,7 +353,7 @@ template {
   font-weight: bold;
 }
 .dashboard-sidebar a {
-  color: #fff;
+  color: var(--text-color);
   text-decoration: none;
   font-size: 18px;
   display: block;
@@ -361,10 +361,10 @@ template {
 .dashboard-sidebar > div {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 .dashboard-sidebar > div svg {
-  fill: #fff;
+  fill: var(--text-color);
   width: 20px;
 }
 .dashboard-sidebar .side-actions {
@@ -390,53 +390,138 @@ template {
   justify-content: space-between;
   align-items: center;
 }
-.dashboard-content .course-list {
+.dashboard-content .course-list,
+.dashboard-content .datapoint-list {
   background-color: #fff;
   display: flex;
   flex-direction: column;
 }
-.dashboard-content .course-list .single-course {
+.dashboard-content .course-list .single-course,
+.dashboard-content .course-list .single-datapoint,
+.dashboard-content .datapoint-list .single-course,
+.dashboard-content .datapoint-list .single-datapoint {
   display: flex;
   justify-content: space-between;
   padding: 15px;
   border-bottom: solid 1px #dfdfe0;
 }
-.dashboard-content .course-list .single-course .course-content {
+.dashboard-content .course-list .single-course .course-content,
+.dashboard-content .course-list .single-course .datapoint-content,
+.dashboard-content .course-list .single-datapoint .course-content,
+.dashboard-content .course-list .single-datapoint .datapoint-content,
+.dashboard-content .datapoint-list .single-course .course-content,
+.dashboard-content .datapoint-list .single-course .datapoint-content,
+.dashboard-content .datapoint-list .single-datapoint .course-content,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-content {
   width: 100%;
 }
-.dashboard-content .course-list .single-course .course-content input {
+.dashboard-content .course-list .single-course .course-content input,
+.dashboard-content .course-list .single-course .datapoint-content input,
+.dashboard-content .course-list .single-datapoint .course-content input,
+.dashboard-content .course-list .single-datapoint .datapoint-content input,
+.dashboard-content .datapoint-list .single-course .course-content input,
+.dashboard-content .datapoint-list .single-course .datapoint-content input,
+.dashboard-content .datapoint-list .single-datapoint .course-content input,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-content input {
   width: 100%;
 }
-.dashboard-content .course-list .single-course .course-content span {
+.dashboard-content .course-list .single-course .course-content span,
+.dashboard-content .course-list .single-course .datapoint-content span,
+.dashboard-content .course-list .single-datapoint .course-content span,
+.dashboard-content .course-list .single-datapoint .datapoint-content span,
+.dashboard-content .datapoint-list .single-course .course-content span,
+.dashboard-content .datapoint-list .single-course .datapoint-content span,
+.dashboard-content .datapoint-list .single-datapoint .course-content span,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-content span {
   display: block;
   padding: 10px 5px;
 }
-.dashboard-content .course-list .single-course .course-actions {
+.dashboard-content .course-list .single-course .datapoint-content,
+.dashboard-content .course-list .single-datapoint .datapoint-content,
+.dashboard-content .datapoint-list .single-course .datapoint-content,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-content {
+  padding: 10px 5px;
+}
+.dashboard-content .course-list .single-course .course-actions,
+.dashboard-content .course-list .single-course .datapoint-actions,
+.dashboard-content .course-list .single-datapoint .course-actions,
+.dashboard-content .course-list .single-datapoint .datapoint-actions,
+.dashboard-content .datapoint-list .single-course .course-actions,
+.dashboard-content .datapoint-list .single-course .datapoint-actions,
+.dashboard-content .datapoint-list .single-datapoint .course-actions,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-.dashboard-content .course-list .single-course .course-actions button {
+.dashboard-content .course-list .single-course .course-actions button,
+.dashboard-content .course-list .single-course .datapoint-actions button,
+.dashboard-content .course-list .single-datapoint .course-actions button,
+.dashboard-content .course-list .single-datapoint .datapoint-actions button,
+.dashboard-content .datapoint-list .single-course .course-actions button,
+.dashboard-content .datapoint-list .single-course .datapoint-actions button,
+.dashboard-content .datapoint-list .single-datapoint .course-actions button,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions button {
   border: none;
   background: none;
   padding: 0;
 }
-.dashboard-content .course-list .single-course .course-actions button svg {
+.dashboard-content .course-list .single-course .course-actions button svg,
+.dashboard-content .course-list .single-course .datapoint-actions button svg,
+.dashboard-content .course-list .single-datapoint .course-actions button svg,
+.dashboard-content .course-list .single-datapoint .datapoint-actions button svg,
+.dashboard-content .datapoint-list .single-course .course-actions button svg,
+.dashboard-content .datapoint-list .single-course .datapoint-actions button svg,
+.dashboard-content .datapoint-list .single-datapoint .course-actions button svg,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions button svg {
   fill: var(--primary-color);
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
-.dashboard-content .course-list .single-course .course-actions button:disabled svg {
+.dashboard-content .course-list .single-course .course-actions button:disabled svg,
+.dashboard-content .course-list .single-course .datapoint-actions button:disabled svg,
+.dashboard-content .course-list .single-datapoint .course-actions button:disabled svg,
+.dashboard-content .course-list .single-datapoint .datapoint-actions button:disabled svg,
+.dashboard-content .datapoint-list .single-course .course-actions button:disabled svg,
+.dashboard-content .datapoint-list .single-course .datapoint-actions button:disabled svg,
+.dashboard-content .datapoint-list .single-datapoint .course-actions button:disabled svg,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions button:disabled svg {
   opacity: 0.5;
 }
-.dashboard-content .course-list .single-course .course-actions .order-control {
+.dashboard-content .course-list .single-course .course-actions .order-control,
+.dashboard-content .course-list .single-course .datapoint-actions .order-control,
+.dashboard-content .course-list .single-datapoint .course-actions .order-control,
+.dashboard-content .course-list .single-datapoint .datapoint-actions .order-control,
+.dashboard-content .datapoint-list .single-course .course-actions .order-control,
+.dashboard-content .datapoint-list .single-course .datapoint-actions .order-control,
+.dashboard-content .datapoint-list .single-datapoint .course-actions .order-control,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions .order-control {
   display: flex;
   flex-direction: column;
   margin-top: -5px;
 }
-.dashboard-content .course-list .single-course .course-actions .order-control > form {
+.dashboard-content .course-list .single-course .course-actions .order-control > form,
+.dashboard-content .course-list .single-course .datapoint-actions .order-control > form,
+.dashboard-content .course-list .single-datapoint .course-actions .order-control > form,
+.dashboard-content .course-list .single-datapoint .datapoint-actions .order-control > form,
+.dashboard-content .datapoint-list .single-course .course-actions .order-control > form,
+.dashboard-content .datapoint-list .single-course .datapoint-actions .order-control > form,
+.dashboard-content .datapoint-list .single-datapoint .course-actions .order-control > form,
+.dashboard-content .datapoint-list .single-datapoint .datapoint-actions .order-control > form {
   height: 16px;
+}
+.dashboard-content .settings-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  background-color: #fff;
+}
+.dashboard-content .settings-form .setting-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: flex-end;
 }
 
 body {
@@ -448,16 +533,110 @@ h2 {
   font-size: 32px;
 }
 
-input {
+input[type=text],
+input[type=number],
+input[type=tel],
+input[type=email],
+input[type=password],
+select {
   min-width: 500px;
   padding: 10px 5px;
   border: none;
   border-bottom: 1px solid var(--primary-color);
   box-sizing: border-box;
+  font-size: 18px;
+}
+
+select {
+  -webkit-border-radius: 2px;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 2px dashed var(--primary-color);
+  padding: 10px 15px;
+  height: 150px;
+  cursor: pointer;
+}
+.custom-file-upload .file-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.custom-file-upload .file-upload-placeholder svg {
+  fill: var(--primary-color);
+  width: 30px;
+}
+
+/* Customize the label (the container) */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Style the checkmark/indicator */
+}
+.checkbox-container .checkbox-text {
+  height: 25px;
+  display: flex;
+  align-items: center;
+}
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+}
+.checkbox-container input:checked ~ .checkmark::after {
+  display: block;
+}
+.checkbox-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--text-color);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
 .btn {
   display: flex;
+  justify-content: center;
   gap: 10px;
   border: none;
   padding: 8px 15px;
@@ -467,11 +646,11 @@ input {
 }
 .btn.primary-btn {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--text-color);
 }
 .btn.primary-btn svg {
   width: 15px;
-  fill: #fff;
+  fill: var(--text-color);
 }
 
 .container {
@@ -524,4 +703,15 @@ input {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.alert {
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+.alert.success {
+  background-color: #d1e7dd;
+  color: #115148;
 }

@@ -13,18 +13,21 @@
 		align-items: center;
 	}
 
-	.course-list {
+	.course-list,
+	.datapoint-list {
 		background-color: #fff;
 		display: flex;
 		flex-direction: column;
 
-		.single-course {
+		.single-course,
+		.single-datapoint {
 			display: flex;
 			justify-content: space-between;
 			padding: 15px;
 			border-bottom: solid 1px #dfdfe0;
 
-			.course-content {
+			.course-content,
+			.datapoint-content {
 				width: 100%;
 
 				input {
@@ -37,7 +40,12 @@
 				}
 			}
 
-			.course-actions {
+			.datapoint-content {
+				padding: 10px 5px;
+			}
+
+			.course-actions,
+			.datapoint-actions {
 				display: flex;
 				align-items: center;
 				gap: 15px;
@@ -68,10 +76,19 @@
 					}
 				}
 			}
+		}
+	}
 
-			// .input {
-			// 	border: none;
-			// }
+	.settings-form {
+		display: flex;
+		flex-direction: column;
+		padding: 20px;
+		gap: 15px;
+		background-color: #fff;
+
+		.setting-btn {
+			width: fit-content;
+			align-self: flex-end;
 		}
 	}
 }

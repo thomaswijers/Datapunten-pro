@@ -1,47 +1,47 @@
 .dashboard-sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 180px;
-    background-color: var(--primary-color);
-    height: calc(100vh - 30px);
-    padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 180px;
+	background-color: var(--primary-color);
+	height: calc(100vh - 30px);
+	padding: 15px;
 
-    .welcome {
-        color: #fff;
-        margin: 0 0 20px 0;
-        font-size: 18px;
+	.welcome {
+		color: var(--text-color);
+		margin: 0 0 20px 0;
+		font-size: 18px;
 
-        span {
-            font-weight: bold;
-        }
-    }
+		span {
+			font-weight: bold;
+		}
+	}
 
-    a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        display: block;
-    }
+	a {
+		color: var(--text-color);
+		text-decoration: none;
+		font-size: 18px;
+		display: block;
+	}
 
-    > div {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+	> div {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 
-        svg {
-            fill: #fff;
-            width: 20px;
-        }
-    }
+		svg {
+			fill: var(--text-color);
+			width: 20px;
+		}
+	}
 
-    .side-actions {
-        gap: 10px;
-    }
+	.side-actions {
+		gap: 10px;
+	}
 
-    .menu-icon a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+	.menu-icon a {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 }

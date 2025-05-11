@@ -1,11 +1,14 @@
 {
-	"userLogin": {
-		"id": 1,
-		"username": "admin",
-		"password": "$2y$10$fgzIeM7x2hVvKnZPssfQnuGOx0v.hjzoKx6hqPxdtLdkGjeAwWUJi"
-	},
-	"userSettings": {
-		"setting1": true,
-		"websiteColor": "#050517"
-	}
+    "userLogin": {
+        "id": 1,
+        "username": "admin",
+        "password": "$2y$10$fgzIeM7x2hVvKnZPssfQnuGOx0v.hjzoKx6hqPxdtLdkGjeAwWUJi"
+    },
+    "userSettings": {
+        "darkMode": false,
+        "frogCursor": false,
+        "adhdMode": false,
+        "textColor": "#ffffff",
+        "websiteColor": "#170513"
+    }
 }
