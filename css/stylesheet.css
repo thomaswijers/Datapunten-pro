@@ -609,7 +609,7 @@ template {
 body {
   font-family: "Inter", sans-serif;
   font-size: 18px;
-  overflow: hidden;
+  overflow-x: clip;
 }
 body.hidden-cursor {
   cursor: none;
