@@ -16,6 +16,10 @@
             </label>
             <input type="file" name="bestand" id="bestand" class="bestand" placeholder="Bestand">
 
+            <div id="uploadingMessage" class="alert info" style="display: none;">
+                📤 Bestand wordt geüpload...
+            </div>
+
             <label class="checkbox-container">
                 <span class="checkbox-text">Herkansing</span>
                 <input type="checkbox" name="herkansing" checked="checked">
@@ -104,4 +108,27 @@
             label.textContent = fileName;
         });
     });
+
+    document.querySelectorAll('form').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+            const fileInput = form.querySelector('input[type="file"]');
+            const uploadingMessage = form.querySelector('#uploadingMessage');
+
+            // Only show upload message if a file is selected
+            if (fileInput && fileInput.files.length > 0) {
+                // Delay message by 1 second
+                const timeout = setTimeout(() => {
+                    if (uploadingMessage) {
+                        uploadingMessage.style.display = 'block';
+                    }
+                }, 100);
+
+                // Hide message again when page is reloaded or navigation happens
+                window.addEventListener('beforeunload', () => {
+                    clearTimeout(timeout);
+                });
+            }
+        });
+    });
+
 </script>

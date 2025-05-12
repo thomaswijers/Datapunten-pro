@@ -816,6 +816,14 @@ input[type=file] {
   background-color: #d1e7dd;
   color: #115148;
 }
+.alert.danger {
+  background-color: #fbd5d9;
+  color: #760b18;
+}
+.alert.info {
+  background-color: #c9e4fd;
+  color: #004280;
+}
 
 #frog-cursor {
   display: none;
