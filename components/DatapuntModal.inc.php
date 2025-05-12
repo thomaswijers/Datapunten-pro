@@ -1,3 +1,8 @@
+<?php
+$userData = json_decode(file_get_contents(__DIR__ . '/../data/user.json'), true);
+$frogCursor = $userData['userSettings']['frogCursor']['value'] ?? false;
+?>
+
 <div id="addModal" class="modal">
     <div class="modal-content">
         <form method="POST" action="datapunten.php" enctype="multipart/form-data">
@@ -15,10 +20,13 @@
                 Custom Upload
             </label>
             <input type="file" name="bestand" id="bestand" class="bestand" placeholder="Bestand">
-
-            <div id="uploadingMessage" class="alert info" style="display: none;">
-                📤 Bestand wordt geüpload...
-            </div>
+            <?php
+            if ($frogCursor) {
+                echo '<div class="alert info" style="display: none;"><img src="images/frog-loader.gif">Bestand wordt geüpload...</div>';
+            } else {
+                echo '<div class="alert info" style="display: none;">📤 Bestand wordt geüpload...</div>';
+            }
+            ?>
 
             <label class="checkbox-container">
                 <span class="checkbox-text">Herkansing</span>
@@ -56,6 +64,14 @@
                 Custom Upload
             </label>
             <input type="file" name="edit_file" id="bestand-edit" class="bestand" placeholder="Bestand">
+
+            <?php
+            if ($frogCursor) {
+                echo '<div class="alert info" style="display: none;"><img src="images/frog-loader.gif">Bestand wordt geüpload...</div>';
+            } else {
+                echo '<div class="alert info" style="display: none;">📤 Bestand wordt geüpload...</div>';
+            }
+            ?>
 
             <label class="checkbox-container">
                 <span class="checkbox-text">Herkansing</span>
@@ -109,25 +125,17 @@
         });
     });
 
-    document.querySelectorAll('form').forEach(function (form) {
-        form.addEventListener('submit', function (e) {
-            const fileInput = form.querySelector('input[type="file"]');
-            const uploadingMessage = form.querySelector('#uploadingMessage');
+    document.querySelectorAll('.modal form').forEach(function (form) {
+        form.addEventListener('submit', function () {
+            const uploadingMessage = form.querySelector('.alert');
 
-            // Only show upload message if a file is selected
-            if (fileInput && fileInput.files.length > 0) {
-                // Delay message by 1 second
-                const timeout = setTimeout(() => {
-                    if (uploadingMessage) {
-                        uploadingMessage.style.display = 'block';
-                    }
-                }, 100);
+            // Hide any existing message (just in case)
+            if (uploadingMessage) uploadingMessage.style.display = 'none';
 
-                // Hide message again when page is reloaded or navigation happens
-                window.addEventListener('beforeunload', () => {
-                    clearTimeout(timeout);
-                });
-            }
+            // Show after 1 second if page hasn't reloaded yet
+            setTimeout(() => {
+                if (uploadingMessage) uploadingMessage.style.display = 'flex';
+            }, 100);
         });
     });
 
