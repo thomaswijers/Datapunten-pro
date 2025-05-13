@@ -7,4 +7,4 @@ Datapunten Pro is een innovatieve, schaalbare webapplicatie die studenten in sta
 - Maak een nieuwe map aan binnen de server omgeving
 - Sleep all bestanden vervolgens in deze nieuwe map
 - Navigeer naar je omgeving met je voorkeurs browser
-- Voeg in het url de "/<Map naam>" toe
+- Voeg in het url de "/Map naam" toe
