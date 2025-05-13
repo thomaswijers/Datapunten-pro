@@ -3,8 +3,16 @@ Datapunten Pro is een innovatieve, schaalbare webapplicatie die studenten in sta
 
 # Instalatie
 - Download de zip van de gtihub repo
+- Extract de zip file naar een locatie naar keuze
+- Hernoem de zipfile naar datapunten
 - Open een FileZilla verbinding naar de server
-- Maak een nieuwe map aan binnen de server omgeving
-- Sleep all bestanden vervolgens in deze nieuwe map
+- Sleep de datapunten folder in de public_html folder
 - Navigeer naar je omgeving met je voorkeurs browser
-- Voeg in het url de "/Map naam" toe
+- Voeg in het url /datapunten toe
+
+# Inloggen
+- Navigeer naar /login
+- Voer de standaard gebruikersnaam en wachtwoord in
+  - **Gebruikersnaam:** admin
+  - **Wachtwoord:** admin
+- Verander de inlog gegevens via de instellingen
