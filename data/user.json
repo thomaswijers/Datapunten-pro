@@ -5,6 +5,11 @@
         "password": "$2y$10$4MTZ6YEWo.7b08QnX1xJsuWnLEopMHL7iq\/3iC4L5rlb82\/wMmJbO"
     },
     "userSettings": {
+        "catCursor": {
+            "label": "Cat Cursor",
+            "type": "checkbox",
+            "value": false
+        },
         "frogCursor": {
             "label": "Frog Cursor",
             "type": "checkbox",

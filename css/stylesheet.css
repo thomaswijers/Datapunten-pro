@@ -517,6 +517,7 @@ template {
 .settings-form {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
   gap: 15px;
   background-color: #fff;
@@ -836,12 +837,25 @@ input[type=file] {
   position: absolute;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
   pointer-events: none; /* Prevents the div from interfering with other elements */
   background-image: url("../images/frog-cursor.png");
   background-size: contain;
   z-index: 999;
 }
 #frog-cursor.show {
+  display: block;
+}
+
+#cat-cursor {
+  display: none;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  pointer-events: none; /* Prevents the div from interfering with other elements */
+  background-image: url("../images/cat-cursor.png");
+  background-size: contain;
+  z-index: 999;
+}
+#cat-cursor.show {
   display: block;
 }

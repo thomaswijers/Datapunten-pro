@@ -253,9 +253,22 @@ input[type="file"] {
 	position: absolute;
 	width: 50px;
 	height: 50px;
-	border-radius: 50%;
 	pointer-events: none; /* Prevents the div from interfering with other elements */
 	background-image: url("../images/frog-cursor.png");
+	background-size: contain;
+	z-index: 999;
+
+	&.show {
+		display: block;
+	}
+}
+#cat-cursor {
+	display: none;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	pointer-events: none; /* Prevents the div from interfering with other elements */
+	background-image: url("../images/cat-cursor.png");
 	background-size: contain;
 	z-index: 999;
 

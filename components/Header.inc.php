@@ -40,13 +40,18 @@
     <?php
     $userData = json_decode(file_get_contents(__DIR__ . '/../data/user.json'), true);
     $frogCursor = $userData['userSettings']['frogCursor']['value'] ?? false;
+    $catCursor = $userData['userSettings']['catCursor']['value'] ?? false;
     ?>
 
     <!-- Dynamically load JS file if frogCursor is true -->
 </head>
 
 <div id="frog-cursor"></div>
+<div id="cat-cursor"></div>
 
-<?php if ($frogCursor): ?>
+<?php if ($catCursor): ?>
+    <script src="js/cat-cursor.js"></script>
+<?php endif; ?>
+<?php if (!$catCursor && $frogCursor): ?>
     <script src="js/frog-cursor.js"></script>
 <?php endif; ?>
