@@ -6,7 +6,7 @@ $frogCursor = $userData['userSettings']['frogCursor']['value'] ?? false;
 <div id="addModal" class="modal">
     <div class="modal-content">
         <form method="POST" action="datapunten.php" enctype="multipart/form-data">
-            <input type="text" name="titel" id="titel" placeholder="Cursus titel" required>
+            <input type="text" name="titel" id="titel" placeholder="Datapunten titel" required>
 
             <select name="cursus" id="cursus" required>
                 <option value="">Kies een cursus</option>
